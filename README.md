@@ -33,7 +33,7 @@ The steps I took were the following
 
 1. Download the images from the NIH to an AWS S3 bucket.
 2. Resize the images from (1024, 1024, 1) to (320, 320, 3) on local storage. Three channels were required by the DenseNet121 base model and the choice of 320, 320 merely followed the convention set by others, probably balancing quality and memory considerations. It seems likely that with the large machines available today more detail could be wrung from the original-sized images and I am considering trying it on an AWS g5.24xlarge spot instance which has 384Gb of RAM compared to the 16Gb on my current g5.xlarge.
-3. Create train, val, test datasets (80%, 5%, 5%) with evenly-distributed diseases and no patient overlap.
+3. Create train, val, test datasets (90%, 5%, 5%) with evenly-distributed diseases and no patient overlap.
 4. Using a 'toy' model I tested 18 loss functions and settled on DynamicWeightedBCE_wgt_smooth which produced the best results.
 5. Finally, I set about testing the entire dataset with all 14 diseases on a 'real' model, modifying it until I achieved the results above.
 
