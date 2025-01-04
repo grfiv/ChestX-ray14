@@ -171,7 +171,7 @@ The loss computation follows this formula:
    - Watch for signs of underconfident predictions with high smoothing
 
 3. **Batch Size Considerations**
-   - <u>Use sufficiently large batch sizes (32 or larger)</u>
+   - <u>Use sufficiently large batch sizes (16 or larger)</u>
    - Ensures stable ratio estimates for weight calculation
 
 ## Limitations
