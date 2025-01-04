@@ -6,9 +6,9 @@ The AUC value reflects the test's ability to distinguish between diseased and no
 
 | Disease            | Fisher 2025 | Rajpurkar 2017 | Bhusala & Panday 2024 | Hasanah 2024 | Ahmad 2023 |
 | ------------------ | ----------- | -------------- | --------------------- | ------------ | ---------- |
-| Cardiomegaly       | **0.911**   | 0.924          | 0.896                 | 0.922        | 0.920      |
+| Cardiomegaly       | 0.911       | 0.924          | 0.896                 | 0.922        | 0.920      |
 | Emphysema          | 0.909       | 0.937          | 0.820                 | 0.935        | 0.870      |
-| Effusion           | **0.892**   | 0.887          | 0.820                 | 0.810        | 0.840      |
+| Effusion           | 0.892       | 0.887          | 0.820                 | 0.810        | 0.840      |
 | Edema              | 0.891       | 0.927          | 0.820                 | 0.850        | 0.860      |
 | Pneumothorax       | 0.888       | 0.888          | 0.890                 | 0.850        | 0.870      |
 | Hernia             | 0.895       | 0.916          | 0.840                 | 0.936        | 0.850      |
@@ -17,7 +17,7 @@ The AUC value reflects the test's ability to distinguish between diseased and no
 | Consolidation      | 0.825       | 0.893          | 0.810                 | 0.790        | 0.830      |
 | Atelectasis        | 0.809       | 0.809          | 0.810                 | 0.820        | 0.850      |
 | Pleural Thickening | 0.774       | 0.806          | 0.810                 | 0.790        | 0.820      |
-| Nodule             | **0.724**   | 0.780          | 0.655                 | 0.760        | 0.700      |
+| Nodule             | 0.724       | 0.780          | 0.655                 | 0.760        | 0.700      |
 | Pneumonia          | 0.740       | 0.768          | 0.770                 | 0.810        | 0.800      |
 | Infiltration       | 0.717       | 0.734          | 0.730                 | 0.700        | 0.750      |
 
