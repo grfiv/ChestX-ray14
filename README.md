@@ -26,7 +26,7 @@ The AUC value reflects the test's ability to distinguish between diseased and no
 
 Convolutional Neural Networks are increasingly useful in medical imaging problems. This analysis (Fisher 2025) uses the NIH ChestX-ray14 dataset of 112,120 chest x-rays represensing 14 diseases in 30,805 unique patients to produce the human practitioner-level AUC scores shown above for this study (Fisher, 2025) and other well-known studies.
 
-I used Tensorflow 2.17 on an AWS g5.xlarge on-demand instance, running Amazon Linux 2023, in Jupyter notebooks, with Cuda compilation tools, release 12.2. I combined the DenseNet121 base model with additional techniques described in detail below. The dataset was very unbalanced (many more normal than diseased) and I successfully used a DynamicWeightedBCE_wgt_smooth loss function rather than the more-common standard weighted cross entropy loss function.
+I used Tensorflow 2.17 on an AWS g5.xlarge on-demand instance, running Amazon Linux 2023, in Jupyter notebooks, with Cuda compilation tools release 12.2. I combined the DenseNet121 base model with additional techniques described in detail below. The dataset was very unbalanced (many more normal than diseased) and I successfully used a DynamicWeightedBCE_wgt_smooth loss function rather than the more-common standard weighted cross entropy loss function.
 
 The chart above reflects the results of an analysis that was terminated after only four epochs by early stopping, indicating that over-fitting had begun, giving hope that better results can be achieved with more work, which is ongoing.
 
