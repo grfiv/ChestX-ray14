@@ -20,6 +20,7 @@ The AUC value reflects the test's ability to distinguish between diseased and no
 | Nodule             | 0.724       | 0.780          | 0.655                 | 0.760        | 0.700      |
 | Pneumonia          | 0.740       | 0.768          | 0.770                 | 0.810        | 0.800      |
 | Infiltration       | 0.717       | 0.734          | 0.730                 | 0.700        | 0.750      |
+| Mean               | 0.830       | 0.852          | 0.811                 | 0.827        | 0.829      |
 
 ![ROC Curves by Disease](imgs/ROC_curves.png)
 
