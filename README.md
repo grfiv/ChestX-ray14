@@ -533,36 +533,7 @@ The training history reveals several key insights about the model's learning pro
 - Lower Precision/PPV (~0.3) indicates challenges with false positives
 - Stable metrics throughout training
 
-## ROC Curve Analysis
-![ROC Curves by Disease](imgs/ROC_curves.png)
-
-The ROC curves demonstrate the model's performance across different medical conditions:
-
-### Overall Performance
-- Micro-average AUC: 0.87
-- Macro-average AUC: 0.83
-- Most conditions show good discrimination ability (AUC > 0.80)
-
-### Top Performing Conditions
-1. Cardiomegaly (AUC = 0.91)
-2. Effusion (AUC = 0.89)
-3. Emphysema (AUC = 0.89)
-4. Edema (AUC = 0.89)
-5. Pneumothorax (AUC = 0.89)
-
-### Challenging Conditions
-1. Infiltration (AUC = 0.72)
-2. Pneumonia (AUC = 0.75)
-3. Nodule (AUC = 0.77)
-4. Pleural Thickening (AUC = 0.77)
-
-### Key Observations
-- All conditions show better-than-random performance (above diagonal line)
-- Significant variation in performance across conditions
-- Some conditions show excellent separation (e.g., Cardiomegaly)
-- Others show more moderate discrimination (e.g., Infiltration)
-
-# <u>Overall Conclusions</u>
+# Overall Conclusions</u>
 
 ### Strengths
 1. Good overall discrimination ability (micro-AUC = 0.87)
