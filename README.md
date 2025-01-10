@@ -37,7 +37,8 @@ The steps I took were the following
 2. Resize the images from (1024, 1024, 1) to (320, 320, 3) on local storage. Three channels were required by the DenseNet121 base model and the choice of 320, 320 merely followed the convention set by others, probably balancing quality and memory considerations. It seems likely that with the large machines available today more detail could be wrung from the original-sized images and I am considering trying it on an AWS g5.24xlarge spot instance which has 384Gb of RAM compared to the 16Gb on my current g5.xlarge.
 3. Create train, val, test datasets (90%, 5%, 5%) with evenly-distributed diseases and no patient overlap.
 4. Using a 'toy' model I tested 18 loss functions and settled on DynamicWeightedBCE_wgt_smooth which produced the best results.
-5. Finally, I set about testing the entire dataset with all 14 diseases on a 'real' model, modifying it until I achieved the results above.
+5. I then tested the entire dataset with all 14 diseases on a 'real' model, modifying it until I achieved the best single-run results.
+6. Finally, I ensembled five models, run with different hyper-parameters, to produce the results shown here.
 
 ## Dynamic Weighted Binary Cross-Entropy Loss Function with Label Smoothing
 
@@ -550,3 +551,5 @@ The training history reveals several key insights about the model's learning pro
 George Fisher
 
 https://georgefisher.com/resume/resume.pdf
+
+As a solo operator I relied upon ChatGPT for general information and Anthropic/Claude for documentation and coding help.
