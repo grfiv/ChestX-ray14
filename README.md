@@ -6,28 +6,28 @@ The AUC value reflects the test's ability to distinguish between diseased and no
 
 | Disease            | Fisher 2025 | Rajpurkar 2017 | Bhusala & Panday 2024 | Hasanah 2024 | Ahmad 2023 |
 | ------------------ | ----------- | -------------- | --------------------- | ------------ | ---------- |
-| Emphysema          | 0.908       | 0.937          | 0.820                 | 0.935        | 0.870      |
-| Cardiomegaly       | 0.901       | 0.924          | 0.896                 | 0.922        | 0.920      |
-| Effusion           | 0.896       | 0.887          | 0.820                 | 0.810        | 0.840      |
-| Edema              | 0.892       | 0.927          | 0.820                 | 0.850        | 0.860      |
-| Pneumothorax       | 0.879       | 0.888          | 0.890                 | 0.850        | 0.870      |
-| Hernia             | 0.862       | 0.916          | 0.840                 | 0.936        | 0.850      |
-| Mass               | 0.830       | 0.848          | 0.867                 | 0.820        | 0.830      |
-| Fibrosis           | 0.828       | 0.804          | 0.810                 | 0.780        | 0.810      |
-| Consolidation      | 0.817       | 0.893          | 0.810                 | 0.790        | 0.830      |
-| Atelectasis        | 0.806       | 0.809          | 0.810                 | 0.820        | 0.850      |
-| Pleural Thickening | 0.795       | 0.806          | 0.810                 | 0.790        | 0.820      |
-| Nodule             | 0.788       | 0.780          | 0.655                 | 0.760        | 0.700      |
-| Pneumonia          | 0.746       | 0.768          | 0.770                 | 0.810        | 0.800      |
-| Infiltration       | 0.720       | 0.734          | 0.730                 | 0.700        | 0.750      |
-| Mean               | 0.834       | 0.852          | 0.811                 | 0.827        | 0.829      |
-| StDev              | 0.059       | 0.067          | 0.062                 | 0.068        | 0.054      |
+| Cardiomegaly       | 0.915       | 0.924          | 0.896                 | 0.922        | 0.920      |
+| Emphysema          | 0.913       | 0.937          | 0.820                 | 0.935        | 0.870      |
+| Edema              | 0.899       | 0.927          | 0.820                 | 0.850        | 0.860      |
+| Effusion           | 0.898       | 0.887          | 0.820                 | 0.810        | 0.840      |
+| Pneumothorax       | 0.892       | 0.888          | 0.890                 | 0.850        | 0.870      |
+| Hernia             | 0.886       | 0.916          | 0.840                 | 0.936        | 0.850      |
+| Mass               | 0.837       | 0.848          | 0.867                 | 0.820        | 0.830      |
+| Fibrosis           | 0.833       | 0.804          | 0.810                 | 0.780        | 0.810      |
+| Consolidation      | 0.824       | 0.893          | 0.810                 | 0.790        | 0.830      |
+| Atelectasis        | 0.816       | 0.809          | 0.810                 | 0.820        | 0.850      |
+| Pleural Thickening | 0.803       | 0.806          | 0.810                 | 0.790        | 0.820      |
+| Nodule             | 0.791       | 0.780          | 0.655                 | 0.760        | 0.700      |
+| Pneumonia          | 0.756       | 0.768          | 0.770                 | 0.810        | 0.800      |
+| Infiltration       | 0.723       | 0.734          | 0.730                 | 0.700        | 0.750      |
+| Mean               | 0.842       | 0.852          | 0.811                 | 0.827        | 0.829      |
+| StDev              | 0.061       | 0.067          | 0.062                 | 0.068        | 0.054      |
 
 ![ROC Curves by Disease](imgs/ROC_curves.png)
 
 Convolutional Neural Networks are increasingly useful in medical imaging problems. This analysis (Fisher 2025) uses the NIH ChestX-ray14 dataset of 112,120 chest x-rays represensing 14 diseases in 30,805 unique patients to produce the human practitioner-level AUC scores shown above for this study (Fisher, 2025) and other well-known studies.
 
-I used Tensorflow 2.17 on an AWS g5.xlarge on-demand instance, running Amazon Linux 2023, in Jupyter notebooks, with Cuda compilation tools release 12.2. I combined the DenseNet121 base model with additional techniques described in detail below. The dataset was very unbalanced (many more normal than diseased) and I successfully used a DynamicWeightedBCE_wgt_smooth loss function rather than the more-common standard weighted cross entropy loss function.
+I used Tensorflow 2.17 on an AWS g5.xlarge on-demand instance, running Amazon Linux 2023, in Jupyter notebooks, with Cuda compilation tools release 12.2. I combined the DenseNet121 base model with additional techniques described below. The dataset was very unbalanced (many more normal than diseased) and I successfully used a DynamicWeightedBCE_wgt_smooth loss function rather than the more-common standard weighted cross entropy loss function.
 
 The chart above reflects the results of an analysis that was terminated after only four epochs by early stopping, indicating that over-fitting had begun, giving hope that better results can be achieved with more work, which is ongoing.
 
