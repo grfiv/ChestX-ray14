@@ -552,4 +552,6 @@ George Fisher
 
 https://georgefisher.com/resume/resume.pdf
 
-As a solo operator I relied upon ChatGPT for general information and Anthropic/Claude for documentation and coding help.
+As a solo operator, I relied heavily on ChatGPT for general information and Anthropic/Claude
+for documentation and coding help. I began my neural network journey in 2015 using Theano to identify
+whales from aerial photographs, gaining a Kaggle Bronze Medal in the *Right Whale Recognition* contest. More recently, I studied the book *Deep Learning with Python, Second Edition* by Francois Chollet, the original author of Keras (both my use of Theano and my introduction to Keras by Francois Chollet explain my preference for TensorFlow, despite the much-hyped "Pythonic" nature of PyTorch, whatever that means).
