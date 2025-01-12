@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>X-Ray Analysis Results</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .image-section {
+            text-align: center;
+        }
+        .image-section img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .prediction-bar {
+            margin: 10px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+        }
+        .bar {
+            height: 24px;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .high-probability {
+            background: #ff9800;
+        }
+        .medium-probability {
+            background: #2196f3;
+        }
+        .low-probability {
+            background: #4caf50;
+        }
+        .correct {
+            border: 2px solid #4caf50;
+        }
+        .incorrect {
+            border: 2px solid #f44336;
+        }
+        .metrics {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 8px;
+        }
+        .filename {
+            font-family: monospace;
+            padding: 5px 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .legend {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .legend-item {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+            border-radius: 3px;
+        }
+        .ground-truth {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .ground-truth.positive {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .ground-truth.negative {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Results</h1>
+        
+        {% if filename %}
+        <div class="filename">
+            Image: {{ filename }}
+        </div>
+        {% endif %}
+
+        <div class="results-grid">
+            <div class="image-section">
+                <h2>Uploaded X-Ray</h2>
+                <img src="data:image/jpeg;base64,{{ image }}" alt="Uploaded X-Ray">
+            </div>
+            
+            <div class="predictions-section">
+                <h2>Predictions & Ground Truth</h2>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="legend-color high-probability"></span>
+                        High Probability (>40%)
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color medium-probability"></span>
+                        Medium Probability (20-40%)
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color low-probability"></span>
+                        Low Probability (<20%)
+                    </div>
+                </div>
+
+                {% for result in results %}
+                <div class="prediction-bar {% if result.correct_prediction is not none %}
+                                          {% if result.correct_prediction %}correct{% else %}incorrect{% endif %}
+                                          {% endif %}">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>{{ result.disease }}</span>
+                        <span>{{ "%.1f"|format(result.probability * 100) }}%</span>
+                    </div>
+                    <div class="bar 
+                        {% if result.probability > 0.4 %}high-probability
+                        {% elif result.probability > 0.2 %}medium-probability
+                        {% else %}low-probability{% endif %}"
+                        style="width: {{ result.probability * 100 }}%">
+                    </div>
+                    {% if result.ground_truth is not none %}
+                    <div class="ground-truth {% if result.ground_truth == 1 %}positive{% else %}negative{% endif %}">
+                        {{ "Present" if result.ground_truth == 1 else "Absent" }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% if metrics %}
+                <div class="metrics">
+                    <h3>Performance Metrics</h3>
+                    <p>Accuracy: {{ "%.1f"|format(metrics.accuracy * 100) }}%</p>
+                    <p>True Positives: {{ metrics.true_positives }}</p>
+                    <p>True Negatives: {{ metrics.true_negatives }}</p>
+                    <p>False Positives: {{ metrics.false_positives }}</p>
+                    <p>False Negatives: {{ metrics.false_negatives }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <center style="margin-top: 20px;">
+            <a href="/" style="display: inline-block; padding: 10px 20px; background: #2196f3; color: white; text-decoration: none; border-radius: 5px;">
+                Analyze Another Image
+            </a>
+        </center>
+    </div>
+</body>
+</html>

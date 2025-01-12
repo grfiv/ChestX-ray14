@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chest X-Ray Disease Classifier</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-form {
+            border: 2px dashed #ccc;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 8px;
+            background: #fafafa;
+            position: relative;
+        }
+
+        .upload-form:hover {
+            border-color: #0066cc;
+            background: #f8f9fa;
+        }
+
+        .preview {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-label {
+            background: #0066cc;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .file-label:hover {
+            background: #0052a3;
+        }
+
+        .submit-button {
+            background: #28a745;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #218838;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .instructions {
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chest X-Ray Disease Classifier</h1>
+        
+        <div class="instructions">
+            Upload a chest X-ray image to analyze for 14 different conditions using our ensemble of deep learning models.
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="upload-form" id="drop-zone">
+                <label class="file-label" for="file">Choose X-Ray Image</label>
+                <input type="file" name="file" id="file" accept="image/*" required>
+                <div class="file-name" id="file-name">No file chosen</div>
+            </div>
+            
+            <div class="preview" id="imagePreview"></div>
+            
+            <center>
+                <button type="submit" class="submit-button" id="analyze-button" style="display: none;">
+                    Analyze Image
+                </button>
+            </center>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            const fileName = document.getElementById('file-name');
+            const analyzeButton = document.getElementById('analyze-button');
+            const file = e.target.files[0];
+            
+            if (file) {
+                fileName.textContent = file.name;
+                analyzeButton.style.display = 'block';
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    preview.innerHTML = '';
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Optional: Add drag and drop support
+        const dropZone = document.getElementById('drop-zone');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            dropZone.style.borderColor = '#0066cc';
+            dropZone.style.backgroundColor = '#f0f7ff';
+        }
+
+        function unhighlight(e) {
+            dropZone.style.borderColor = '#ccc';
+            dropZone.style.backgroundColor = '#fafafa';
+        }
+
+        dropZone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const file = dt.files[0];
+            document.querySelector('input[type="file"]').files = dt.files;
+            document.querySelector('input[type="file"]').dispatchEvent(new Event('change'));
+        }
+    </script>
+</body>
+</html>
