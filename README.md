@@ -549,13 +549,13 @@ The training history reveals several key insights about the model's learning pro
 
 # Online Prediction System
 
-![Step 1 Online Analysis](/Users/george/Dropbox/machine_learning/ChestX-ray14/imgs/Step 1 Online Analysis.jpg)
+![Step 1 Online Analysis](imgs/Step 1 Online Analysis.jpg)
 
-![Step 2 Online Analysis](/Users/george/Dropbox/machine_learning/ChestX-ray14/imgs/Step 2 Online Analysis.jpg)
+![Step 2 Online Analysis](imgs/Step 2 Online Analysis.jpg)
 
-![Step 3a Online Analysis](/Users/george/Dropbox/machine_learning/ChestX-ray14/imgs/Step 3a Online Analysis.jpg)
+![Step 3a Online Analysis](imgs/Step 3a Online Analysis.jpg)
 
-![Step 3b Online Analysis](/Users/george/Dropbox/machine_learning/ChestX-ray14/imgs/Step 3b Online Analysis.jpg)
+![Step 3b Online Analysis](imgs/Step 3b Online Analysis.jpg)
 
 # Author
 
