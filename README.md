@@ -557,6 +557,8 @@ The training history reveals several key insights about the model's learning pro
 
 ![Step 3b Online Analysis](imgs/Step_3b_Online_Analysis.jpg)
 
+The bars on the left are the predictions; the Present/Absent on the right are the ground truth.
+
 # Author
 
 George Fisher
