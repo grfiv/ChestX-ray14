@@ -549,13 +549,13 @@ The training history reveals several key insights about the model's learning pro
 
 # Online Prediction System
 
-![Step 1 Online Analysis](imgs/Step 1 Online Analysis.jpg)
+![Step 1 Online Analysis](imgs/Step_1_Online_Analysis.jpg)
 
-![Step 2 Online Analysis](imgs/Step 2 Online Analysis.jpg)
+![Step 2 Online Analysis](imgs/Step_2_Online_Analysis.jpg)
 
-![Step 3a Online Analysis](imgs/Step 3a Online Analysis.jpg)
+![Step 3a Online Analysis](imgs/Step_3a_Online_Analysis.jpg)
 
-![Step 3b Online Analysis](imgs/Step 3b Online Analysis.jpg)
+![Step 3b Online Analysis](imgs/Step_3b_Online_Analysis.jpg)
 
 # Author
 
