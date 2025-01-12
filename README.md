@@ -39,7 +39,7 @@ The steps I took were the following
 4. Using a 'toy' model I tested 18 loss functions and settled on DynamicWeightedBCE_wgt_smooth which produced the best results.
 5. I then tested the entire dataset with all 14 diseases on a 'real' model, modifying it until I achieved the best single-run results.
 6. Finally, I ensembled five models, run with different hyper-parameters, to produce the results shown here.
-7. In addition, I created --with a great deal of help from Anthropic/Claude-- an online system which reads in a x-ray and using the ensembled model shows the prediction and the ground truth.
+7. In addition, I created --with a great deal of help from Anthropic/Claude-- an online system which reads in an x-ray and using the ensembled model shows the prediction and the ground truth.
 
 ## Dynamic Weighted Binary Cross-Entropy Loss Function with Label Smoothing
 
