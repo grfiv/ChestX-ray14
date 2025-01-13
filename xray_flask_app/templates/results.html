@@ -35,11 +35,24 @@
             background: #f8f9fa;
             border-radius: 8px;
             position: relative;
+            min-height: 65px;
+        }
+        .disease-label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        .probability-display {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-weight: 500;
         }
         .bar {
             height: 24px;
             border-radius: 4px;
             transition: width 0.3s ease;
+            margin-top: 5px;
         }
         .high-probability {
             background: #ff9800;
@@ -55,6 +68,22 @@
         }
         .incorrect {
             border: 2px solid #f44336;
+        }
+        .ground-truth {
+            position: absolute;
+            right: 15px;
+            bottom: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .ground-truth.positive {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .ground-truth.negative {
+            background: #ffebee;
+            color: #c62828;
         }
         .metrics {
             margin-top: 20px;
@@ -79,6 +108,7 @@
         .legend-item {
             display: inline-block;
             margin-right: 20px;
+            padding: 5px 10px;
         }
         .legend-color {
             display: inline-block;
@@ -88,22 +118,18 @@
             vertical-align: middle;
             border-radius: 3px;
         }
-        .ground-truth {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: bold;
+        .analyze-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2196f3;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
         }
-        .ground-truth.positive {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-        .ground-truth.negative {
-            background: #ffebee;
-            color: #c62828;
+        .analyze-button:hover {
+            background: #1976d2;
         }
     </style>
 </head>
@@ -145,10 +171,8 @@
                 <div class="prediction-bar {% if result.correct_prediction is not none %}
                                           {% if result.correct_prediction %}correct{% else %}incorrect{% endif %}
                                           {% endif %}">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>{{ result.disease }}</span>
-                        <span>{{ "%.1f"|format(result.probability * 100) }}%</span>
-                    </div>
+                    <div class="disease-label">{{ result.disease }}</div>
+                    <div class="probability-display">{{ "%.1f"|format(result.probability * 100) }}%</div>
                     <div class="bar 
                         {% if result.probability > 0.4 %}high-probability
                         {% elif result.probability > 0.2 %}medium-probability
@@ -176,8 +200,8 @@
             </div>
         </div>
 
-        <center style="margin-top: 20px;">
-            <a href="/" style="display: inline-block; padding: 10px 20px; background: #2196f3; color: white; text-decoration: none; border-radius: 5px;">
+        <center>
+            <a href="/" class="analyze-button">
                 Analyze Another Image
             </a>
         </center>
